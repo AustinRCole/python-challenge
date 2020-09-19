@@ -1,13 +1,13 @@
 import os
 import csv
-
+#read file
 bank_csv = os.path.join('Resources', 'budget_data.csv')
 
 with open(bank_csv,'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-
+    #header
     next(csvreader)
-
+    #convert csv columns to lists
     period = []
     profit_loss = []
 
@@ -18,7 +18,7 @@ with open(bank_csv,'r') as csvfile:
         profit = int(row[1])
         profit_loss.append(profit)
     
-       
+    #find the change between every month + the other analysis 
     change = [profit_loss[i] - profit_loss[i-1] for i in range(len(profit_loss)-1)]
     total_months = len(period)
     netProfit = sum(profit_loss)
@@ -26,7 +26,7 @@ with open(bank_csv,'r') as csvfile:
     
     maxChange = change.index(max(change))
     minChange = change.index(min(change))
-    
+    #print final analysis to terminal window
     print('Financial Analysis')
     print('-------------------------------------------------')
     print(f'Total Months: {total_months}')
@@ -36,6 +36,7 @@ with open(bank_csv,'r') as csvfile:
     print(f'Greatest Decrease in Profits: {period[minChange]} (${profit_loss[minChange]})')
     print('-------------------------------------------------')
 
+    #write file to a text document
     output_path = os.path.join('analysis','new.csv')
 
     with open(output_path,'w') as newfile:

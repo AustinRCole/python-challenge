@@ -49,7 +49,8 @@ with open(poll_csv,'r') as csvfile:
     correy_percentage = round(correy_votes / total_votes * 100,5)
     li_percentage = round(li_votes / total_votes * 100,5)
     otooley_percentage = round(otooley_votes / total_votes * 100,5)
-
+    #Khan is seen with the highest votal total
+    #print result to terminal window
     print('Election Results')
     print('---------------------')
     print(f'Khan: {khan_percentage}% ({khan_votes})')
